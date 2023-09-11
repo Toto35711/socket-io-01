@@ -1,0 +1,19 @@
+<div class="max-w-sm rounded overflow-hidden shadow-lg p-4">
+    <form class="w-full max-w-sm">
+        <div class="flex items-center border-b border-teal-500 py-2">
+            <input (keyup.enter)="sendMessage()" [(ngModel)]="message" [ngModelOptions]="{standalone: true}"
+                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" placeholder="Hi" aria-label="message">
+            <button (click)="sendMessage()"
+                class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+                type="button">
+                Send
+            </button>
+        </div>
+    </form>
+</div>
+
+<div *ngFor="let message of messages" class="max-w-sm rounded overflow-hidden shadow-lg p-4">
+    <ng-container *ngIf="message.isSender"> {{message.message}}</ng-container>
+    <ng-container *ngIf="!message.isSender">{{'reply: ' +message.message}}</ng-container>
+</div>
